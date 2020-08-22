@@ -1,0 +1,1 @@
+This is JAVA code written mostly for a SAIT course taken in Fall of 2019. However, I also played a lot with my own Java, in particular Linked List, Binary Trees and recursion post course, up until I began the EvolveU Full Stack Developer program in February 2020.
