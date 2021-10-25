@@ -1,1 +1,3 @@
-This is JAVA code written mostly for a SAIT course taken in Fall of 2019. However, I also played a lot with my own Java, in particular Linked List, Binary Trees and recursion post course, up until I began the EvolveU Full Stack Developer program in February 2020.
+
+24-Oct-2021: Helping my son with his Grade 11 Computer Science in Java since September start. Nice to get back to the programming since my Cancer Prostatectomy. I admit it was tough to get back into the swing, even after the positive results reported in late August that PSA test was basically cancer free. It was happy news, but took a bit to get past the whole big cancer thing depression.
+Original: This is JAVA code written mostly for a SAIT course taken in Fall of 2019. However, I also played a lot with my own Java, in particular Linked List, Binary Trees and recursion post course, up until I began the EvolveU Full Stack Developer program in February 2020.
