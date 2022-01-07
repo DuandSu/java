@@ -23,17 +23,18 @@ public class dungeon_game {
         String userInput = "";
         
         String[] roomDesc = {
-            "You are in the entry hall. There is a closet, chair, chest, coat "
-                + "rack and a picture of an old man. It is a long narrow room. "
-                + "There are doors to the North, West and East.",
+            "You are in the entry hall. There is a closet with a ring of garlic "
+                + "hanging on it, chair, coat rack, chest and picture of an "
+                + "old man. It is a long narrow room. There are doors to the "
+                + "north, east, west and south.",
             "You are in the grand hall. It has a high ceiling, chandelier, "
-                + "an armoire, a fire place, chairs in front, a "
-                + "desk, a piano, an electric guitar. The fire is out. There is "
-                + "a door to the west, east and south.",
+                + "armoire, fire place, chairs in front, "
+                + "desk, piano and an electric guitar. The fire is out. There is "
+                + "a door to the east, west and south.",
             "You are in an empty room. There is nothing to do here. There is "
                 + "a door to the west and south.",
             "You are in an empty room. There is nothing to do here. There is "
-                + "a door to the west and north."
+                + "a door to the north and west."
         };
         boolean openedChest = false;
         boolean openedDesk = false;
@@ -42,6 +43,7 @@ public class dungeon_game {
         boolean hasMatches = false;
         boolean fireStarted = false;
         boolean rm2LightsOn = false;
+        boolean hasGarlic = false;
         int room = 1;
         boolean keepGoing = true;
         while (keepGoing) {
@@ -94,19 +96,39 @@ public class dungeon_game {
                     }
                     else if (userInput.contains("south")) {
                         System.out.println("\nThat's the door you just came "
-                        + "through ya big dummy! You go through the south door "
-                        + "and are greeted by the band of orcs that were chasing "
-                        + "you! Remember? They smile and grunt HALLO, then chop your head off!");
+                            + "through ya big dummy! You go through the south door "
+                            + "and are greeted by the band of orcs that were chasing "
+                            + "you! Remember? They smile and grunt HALLO, then chop your head off!");
                         keepGoing = false;
                         System.out.println("\nThanks for Playing. Have a good DEATH!");
                     }
                     else if (userInput.contains("closet")) {
-                        System.out.println("\nYou open the closet doors and "
+                        if (hasGarlic) {
+                            System.out.println("\nYou open the closet doors and "
+                                    + "discover a tall gentleman with razor sharp"
+                                    + " teeth. He crys Velcom to my domain. He "
+                                    + " begins to lunge at you to bite you "
+                                    + "and suck your blood. But then he sees "
+                                    + "and smells the garlic. Rather than jump "
+                                    + "towards you, he runs out of the south "
+                                    + "door. Good thing you picked up the "
+                                    + "garlic!");
+                        }
+                        else {
+                            System.out.println("\nYou open the closet doors and "
                                 + "discover a tall gentleman with razor sharp"
                                 + " teeth. He crys Velcom to my domain. He bites "
                                 + "your neck, drinks your blood. Yup. You are DEAD!");
-                        keepGoing = false;
-                        System.out.println("\nThanks for Playing. Have a good DEATH!");
+                            keepGoing = false;
+                            System.out.println("\nThanks for Playing. Have a good DEATH!");
+                        }
+                    }
+                    else if (userInput.contains("garlic")) {
+                        System.out.println("\nYou take the ring of garlic. "
+                            + "Thinking it is a nice necklace you put it "
+                            + "around your neck. That's why you have no "
+                            + "girl friends Prince Charming!");
+                        hasGarlic = true;
                     }
                     else if (userInput.contains("picture") || userInput.contains("man")) {
                         System.out.println("\nYou look at the picture. It looks"
