@@ -20,42 +20,8 @@ public class dungeon_game {
         Scanner numscan = new Scanner(System.in);
         Scanner wordscan = new Scanner(System.in);
         
-//        String userInput = "";
-        
-//        String[] roomDesc = {
-//            "You are in the entry hall. There is a closet with a ring of garlic "
-//                + "hanging on it, chair, coat rack, chest and picture of an "
-//                + "old man. It is a long narrow room. There are doors to the "
-//                + "north, east, west and south.",
-//            "You are in the grand hall. It has a high ceiling, chandelier, "
-//                + "armoire, fire place, chairs in front, "
-//                + "desk, piano and an electric guitar. The fire is out. There is "
-//                + "a door to the east, west and south.",
-//            "You are in the dining room. There is table. It has a plate full of "
-//                + "fish. There is a door to the west and south.",
-//            "You are in a kitchen. You see a black cat in the southeast corner. "
-//                + " There is a door to the north and west."
-//        };
-        
-        
         dgParams dP = new dgParams();
         
-//        boolean cheatMode = false;
-//        boolean openedChest = false;
-//        boolean openedDesk = false;
-//        boolean hasKey = false;
-//        boolean hasStrings = false;
-//        boolean hasMatches = false;
-//        boolean fireStarted = false;
-//        boolean rm2LightsOn = false;
-//        boolean hasGarlic = false;
-//        boolean ratGone = false;
-//        boolean hasFish = false;
-//        boolean hasCat = false;
-//        String catName = "Black Cat";
-//        int room = 1;
-//        boolean keepGoing = true;
-
         while (dP.keepGoing) {
             System.out.println("\n" + dP.roomDesc[dP.room-1] + "\n");
             System.out.println("\n What would you like to do? ");
@@ -101,251 +67,13 @@ public class dungeon_game {
                     handleRoom1(dP);
                 }
                 else if (dP.room == 2) {
-                    if (dP.userInput.contains("north")) {
-                        System.out.println("\nYou can't go that way. No door "
-                                + "silly!");
-                    }
-                    else if (dP.userInput.contains("south")) {
-                        if (dP.hasKey) {
-                            System.out.println("\nYou are going through the south door");
-                            dP.room = 1;
-                        }
-                        else {
-                            System.out.println("\nDarn! The door seems to be "
-                                    + "locked!");
-                        }
-                    }                    
-                    else if (dP.userInput.contains("east")) {
-                        if (dP.hasKey) {
-                            System.out.println("\nYou are going through the east door");
-                            dP.room = 3;
-                        }
-                        else {
-                            System.out.println("\nDarn! The door seems to be "
-                                    + "locked!");
-                        }
-                    }
-                    else if (dP.userInput.contains("west")) {
-                        if (dP.hasKey) {
-                            System.out.println("\nYou are going through the west door");
-                        }
-                        else {
-                            System.out.println("\nDarn! The door seems to be "
-                                    + "locked!");                            
-                        }
-                    }
-                    else if (dP.userInput.contains("light") || dP.userInput.contains("chandelier")) {
-                        if (dP.rm2LightsOn) {
-                            System.out.println("\nYou decide this room looks better "
-                                    + "dark and turn the lights off! First good "
-                                    + "decision you've made so far.");
-                        }
-                        else {
-                            System.out.println("\nYou see a light switch and "
-                                    + "turn the lights on. God. Is this room "
-                                    + "dusty and dirty. You also notice a pack "
-                                    + "of bats in the ceiling.");                            
-                        }
-                        dP.rm2LightsOn = !dP.rm2LightsOn;
-                    }
-                    else if (dP.userInput.contains("armoire") || dP.userInput.contains("closet")) {
-                        if (dP.ratGone) {
-                            System.out.println("\nYou open the armoire. The rat "
-                                    + "is still gone. So is your key!");
-                        }
-                        else {
-                            System.out.println("\nYou open the armoire hoping for "
-                                    + "some stylish clothes. Out jumps a pack rat. "
-                                    + "He grabs your key and runs through the east "
-                                    + "door. You have no key to get through the "
-                                    + "doors now. Unless you want to perish slowly, "
-                                    + "The key command you are looking for is DIE!");
-                        }
-                        if (dP.cheatMode) {
-                            System.out.println("\nOK. You are running in cheat "
-                                + "mode. I guess nothing really happened!");
-                            dP.ratGone = false;
-                            dP.hasKey = true;
-                        }
-                        else {
-                            dP.ratGone = true;
-                            dP.hasKey = false;
-                        }
-                    }
-                    else if (dP.userInput.contains("piano")) {
-                        System.out.println("\nOK Elton! You rock an incredible "
-                                + "version of chop sticks. The bats in the "
-                                + "ceiling applaud!");
-                    }
-                    else if (dP.userInput.contains("desk")) {
-                        System.out.println("\nWow. The desk contains guitar "
-                                + "strings and matches. Maybe you can burn "
-                                + "your guitar and play the fire place!");
-                        dP.openedDesk = true;
-                    }
-                    else if (dP.userInput.contains("strings")) {
-                        if (dP.openedDesk) {
-                            System.out.println("\nYou open the desk and grab "
-                                    + "the guitar strings!");
-                            dP.hasStrings = true;
-                        }
-                        else {
-                            System.out.println("\nGood idea. Maybe you should "
-                                    + "find some!");                            
-                        }
-                    }
-                    else if (dP.userInput.contains("matches")) {
-                        if (dP.openedDesk) {
-                            System.out.println("\nYou open the desk and grab "
-                                    + "the matches!");
-                            dP.hasMatches = true;
-                        }
-                        else {
-                            System.out.println("\nGood idea. Maybe you should "
-                                    + "find some!");                            
-                        }
-                    }
-                    else if (dP.userInput.contains("guitar") || dP.userInput.contains("electric")) {
-                        if (dP.hasStrings) {
-                            System.out.println("\nOK Eddie! You put the strings "
-                                    + "on the guitar and tune it, kind of. You "
-                                    + "then rock an incredible version of "
-                                    + "Eruption. The bats in the ceiling "
-                                    + "screech for more!");
-                        }
-                        else {
-                            System.out.println("\nSorry ole chap, but it seems "
-                                    + "all the strings are broken! Maybe try "
-                                    + "whistling?");
-                        }
-                    }
-                    else if (dP.userInput.contains("fire") || dP.userInput.contains("place")) {
-                        if (dP.hasMatches) {
-                            System.out.println("\nOK Fire Starter, you light a "
-                                    + "match and somehow get a roaring blaze "
-                                    + "going. Try not to burn down the house "
-                                    + "please!");
-                            dP.roomDesc[1] = dP.roomDesc[1].replace(
-                                "is out", "is blazing");                    
-
-                            dP.fireStarted = true;
-                        }
-                        else {
-                            System.out.println("\nSorry Mr. Pyromania. You "
-                                    + "should know you need some fire for that, "
-                                    + "or something to start it with!");
-                        }
-                    }
-                    else if (dP.userInput.contains("chair")) {
-                        if (dP.fireStarted) {
-                            if (dP.hasCat) {
-                                System.out.println("\nIt is so warm and toasty "
-                                        + "sitting in front of this fire. You kind "
-                                        + "of think maybe it is too hot, but "
-                                        + "regardless you fall asleep. Suddenly, "
-                                        + "you hear MEEEOOOOWWWWW! You wake to "
-                                        + "find that your clothes are smoking and "
-                                        + "you feel like you have a sunburn all "
-                                        + "over. You jump out of the chair. "
-                                        + dP.catName + " has saved your life!");
-                            }
-                            else {
-                                System.out.println("\nIt is so warm and toasty "
-                                        + "sitting in front of this fire. You kind "
-                                        + "of think maybe it is too hot, but "
-                                        + "regardless you fall asleep. Suddenly, you "
-                                        + "seem to be floating above the charred "
-                                        + "remains of your body. You realize you are "
-                                        + "a ghost and you are DEAD smart guy!");
-                                dP.keepGoing = false;
-                                System.out.println("\nThanks for Playing. Have a good DEATH!");
-                            }
-                        }
-                        else {
-                            System.out.println("\nIt is really just too cold in "
-                                    + "this room to be comfortable sitting in "
-                                    + "this chair. You shiver and stand up!");
-                        }
-                    }
+                    handleRoom2(dP);
                 }
                 else if (dP.room == 3) {
-                    if (dP.userInput.contains("north") || dP.userInput.contains("east")) {
-                        System.out.println("\nYou can't go that way. No door "
-                                + "silly!");
-                    }
-                    else if (dP.userInput.contains("west")) {
-                        if (dP.hasKey) {
-                            System.out.println("\nYou are going through the west door");
-                            dP.room = 2;
-                        }
-                        else {
-                            System.out.println("\nDarn! The door seems to be "
-                                    + "locked!");
-                        }
-                    }                    
-                    else if (dP.userInput.contains("south")) {
-                        if (dP.hasKey) {
-                            System.out.println("\nYou are going through the south door");
-                            dP.room = 4;
-                        }
-                        else {
-                            System.out.println("\nDarn! The door seems to be "
-                                    + "locked!");
-                        }
-                    }
-                    else if (dP.userInput.contains("fish")) {
-                        System.out.println("\nIt is a bit smelly, but you "
-                                + "pocket some of the fish. Even you are not "
-                                + "dumb enough to try eating it");
-                        dP.hasFish = true;
-                    }
+                    handleRoom3(dP);
                 }
                 else if (dP.room == 4) {
-                    if (dP.userInput.contains("east") || dP.userInput.contains("south")) {
-                        System.out.println("\nYou can't go that way. No door "
-                                + "silly!");
-                    }
-                    else if (dP.userInput.contains("west")) {
-                        if (dP.hasKey) {
-                            System.out.println("\nYou are going through the west door");
-                            dP.room = 1;
-                        }
-                        else {
-                            System.out.println("\nDarn! The door seems to be "
-                                    + "locked!");
-                        }
-                    }                    
-                    else if (dP.userInput.contains("north")) {
-                        if (dP.hasKey) {
-                            System.out.println("\nYou are going through the north door");
-                            dP.room = 3;
-                        }
-                        else {
-                            System.out.println("\nDarn! The door seems to be "
-                                    + "locked!");
-                        }
-                    }
-                    else if (dP.userInput.contains("cat") || dP.userInput.contains("fish")) {
-                        if (dP.hasFish && !dP.hasCat) {
-                            System.out.println("\nThe cat jumps at the fish and "
-                                    + "eats if up whole. It licks its paws. "
-                                    + "Prrrrrrrrrrrr! I think you "
-                                    + "made a friend. The cat is following you "
-                                    + "now!");
-                            dP.roomDesc[3] = dP.roomDesc[3].replace(
-                                " You see a black cat in the southeast corner.", 
-                                "");
-                            dP.hasCat = true;
-                        }
-                        else if (dP.hasCat) {
-                            System.out.println("The cat is your friend now. "
-                                    + "Prrrrrrrrrrrrrrrrr!");
-                        }
-                        else {
-                            System.out.println("\nMEOW! PSSST! GRRRR! The cat "
-                                    + "scratches you with those sharp claws!");
-                        }
-                    }
+                    handleRoom4(dP);
                 }
                 else {
                     System.out.println("\nSeems you are lost and don't know which room you are in. Go back to start!");
@@ -469,4 +197,255 @@ public class dungeon_game {
             dP.keepGoing = false;
             System.out.println("\nThanks for Playing. Have a good DEATH!");                    }
     }
+    
+    public static void handleRoom2(dgParams dP) {
+        if (dP.userInput.contains("north")) {
+            System.out.println("\nYou can't go that way. No door "
+                    + "silly!");
+        }
+        else if (dP.userInput.contains("south")) {
+            if (dP.hasKey) {
+                System.out.println("\nYou are going through the south door");
+                dP.room = 1;
+            }
+            else {
+                System.out.println("\nDarn! The door seems to be "
+                        + "locked!");
+            }
+        }                    
+        else if (dP.userInput.contains("east")) {
+            if (dP.hasKey) {
+                System.out.println("\nYou are going through the east door");
+                dP.room = 3;
+            }
+            else {
+                System.out.println("\nDarn! The door seems to be "
+                        + "locked!");
+            }
+        }
+        else if (dP.userInput.contains("west")) {
+            if (dP.hasKey) {
+                System.out.println("\nYou are going through the west door");
+            }
+            else {
+                System.out.println("\nDarn! The door seems to be "
+                        + "locked!");                            
+            }
+        }
+        else if (dP.userInput.contains("light") || dP.userInput.contains("chandelier")) {
+            if (dP.rm2LightsOn) {
+                System.out.println("\nYou decide this room looks better "
+                        + "dark and turn the lights off! First good "
+                        + "decision you've made so far.");
+            }
+            else {
+                System.out.println("\nYou see a light switch and "
+                        + "turn the lights on. God. Is this room "
+                        + "dusty and dirty. You also notice a pack "
+                        + "of bats in the ceiling.");                            
+            }
+            dP.rm2LightsOn = !dP.rm2LightsOn;
+        }
+        else if (dP.userInput.contains("armoire") || dP.userInput.contains("closet")) {
+            if (dP.ratGone) {
+                System.out.println("\nYou open the armoire. The rat "
+                        + "is still gone. So is your key!");
+            }
+            else {
+                System.out.println("\nYou open the armoire hoping for "
+                        + "some stylish clothes. Out jumps a pack rat. "
+                        + "He grabs your key and runs through the east "
+                        + "door. You have no key to get through the "
+                        + "doors now. Unless you want to perish slowly, "
+                        + "The key command you are looking for is DIE!");
+            }
+            if (dP.cheatMode) {
+                System.out.println("\nOK. You are running in cheat "
+                    + "mode. I guess nothing really happened!");
+                dP.ratGone = false;
+                dP.hasKey = true;
+            }
+            else {
+                dP.ratGone = true;
+                dP.hasKey = false;
+            }
+        }
+        else if (dP.userInput.contains("piano")) {
+            System.out.println("\nOK Elton! You rock an incredible "
+                    + "version of chop sticks. The bats in the "
+                    + "ceiling applaud!");
+        }
+        else if (dP.userInput.contains("desk")) {
+            System.out.println("\nWow. The desk contains guitar "
+                    + "strings and matches. Maybe you can burn "
+                    + "your guitar and play the fire place!");
+            dP.openedDesk = true;
+        }
+        else if (dP.userInput.contains("strings")) {
+            if (dP.openedDesk) {
+                System.out.println("\nYou open the desk and grab "
+                        + "the guitar strings!");
+                dP.hasStrings = true;
+            }
+            else {
+                System.out.println("\nGood idea. Maybe you should "
+                        + "find some!");                            
+            }
+        }
+        else if (dP.userInput.contains("matches")) {
+            if (dP.openedDesk) {
+                System.out.println("\nYou open the desk and grab "
+                        + "the matches!");
+                dP.hasMatches = true;
+            }
+            else {
+                System.out.println("\nGood idea. Maybe you should "
+                        + "find some!");                            
+            }
+        }
+        else if (dP.userInput.contains("guitar") || dP.userInput.contains("electric")) {
+            if (dP.hasStrings) {
+                System.out.println("\nOK Eddie! You put the strings "
+                        + "on the guitar and tune it, kind of. You "
+                        + "then rock an incredible version of "
+                        + "Eruption. The bats in the ceiling "
+                        + "screech for more!");
+            }
+            else {
+                System.out.println("\nSorry ole chap, but it seems "
+                        + "all the strings are broken! Maybe try "
+                        + "whistling?");
+            }
+        }
+        else if (dP.userInput.contains("fire") || dP.userInput.contains("place")) {
+            if (dP.hasMatches) {
+                System.out.println("\nOK Fire Starter, you light a "
+                        + "match and somehow get a roaring blaze "
+                        + "going. Try not to burn down the house "
+                        + "please!");
+                dP.roomDesc[1] = dP.roomDesc[1].replace(
+                    "is out", "is blazing");                    
+
+                dP.fireStarted = true;
+            }
+            else {
+                System.out.println("\nSorry Mr. Pyromania. You "
+                        + "should know you need some fire for that, "
+                        + "or something to start it with!");
+            }
+        }
+        else if (dP.userInput.contains("chair")) {
+            if (dP.fireStarted) {
+                if (dP.hasCat) {
+                    System.out.println("\nIt is so warm and toasty "
+                            + "sitting in front of this fire. You kind "
+                            + "of think maybe it is too hot, but "
+                            + "regardless you fall asleep. Suddenly, "
+                            + "you hear MEEEOOOOWWWWW! You wake to "
+                            + "find that your clothes are smoking and "
+                            + "you feel like you have a sunburn all "
+                            + "over. You jump out of the chair. "
+                            + dP.catName + " has saved your life!");
+                }
+                else {
+                    System.out.println("\nIt is so warm and toasty "
+                            + "sitting in front of this fire. You kind "
+                            + "of think maybe it is too hot, but "
+                            + "regardless you fall asleep. Suddenly, you "
+                            + "seem to be floating above the charred "
+                            + "remains of your body. You realize you are "
+                            + "a ghost and you are DEAD smart guy!");
+                    dP.keepGoing = false;
+                    System.out.println("\nThanks for Playing. Have a good DEATH!");
+                }
+            }
+            else {
+                System.out.println("\nIt is really just too cold in "
+                        + "this room to be comfortable sitting in "
+                        + "this chair. You shiver and stand up!");
+            }
+        }
+    }
+    
+    public static void handleRoom3(dgParams dP) {
+        if (dP.userInput.contains("north") || dP.userInput.contains("east")) {
+            System.out.println("\nYou can't go that way. No door "
+                    + "silly!");
+        }
+        else if (dP.userInput.contains("west")) {
+            if (dP.hasKey) {
+                System.out.println("\nYou are going through the west door");
+                dP.room = 2;
+            }
+            else {
+                System.out.println("\nDarn! The door seems to be "
+                        + "locked!");
+            }
+        }                    
+        else if (dP.userInput.contains("south")) {
+            if (dP.hasKey) {
+                System.out.println("\nYou are going through the south door");
+                dP.room = 4;
+            }
+            else {
+                System.out.println("\nDarn! The door seems to be "
+                        + "locked!");
+            }
+        }
+        else if (dP.userInput.contains("fish")) {
+            System.out.println("\nIt is a bit smelly, but you "
+                    + "pocket some of the fish. Even you are not "
+                    + "dumb enough to try eating it");
+            dP.hasFish = true;
+        }
+    }
+    
+    public static void handleRoom4(dgParams dP) {
+        if (dP.userInput.contains("east") || dP.userInput.contains("south")) {
+            System.out.println("\nYou can't go that way. No door "
+                    + "silly!");
+        }
+        else if (dP.userInput.contains("west")) {
+            if (dP.hasKey) {
+                System.out.println("\nYou are going through the west door");
+                dP.room = 1;
+            }
+            else {
+                System.out.println("\nDarn! The door seems to be "
+                        + "locked!");
+            }
+        }                    
+        else if (dP.userInput.contains("north")) {
+            if (dP.hasKey) {
+                System.out.println("\nYou are going through the north door");
+                dP.room = 3;
+            }
+            else {
+                System.out.println("\nDarn! The door seems to be "
+                        + "locked!");
+            }
+        }
+        else if (dP.userInput.contains("cat") || dP.userInput.contains("fish")) {
+            if (dP.hasFish && !dP.hasCat) {
+                System.out.println("\nThe cat jumps at the fish and "
+                        + "eats if up whole. It licks its paws. "
+                        + "Prrrrrrrrrrrr! I think you "
+                        + "made a friend. The cat is following you "
+                        + "now!");
+                dP.roomDesc[3] = dP.roomDesc[3].replace(
+                    " You see a black cat in the southeast corner.", 
+                    "");
+                dP.hasCat = true;
+            }
+            else if (dP.hasCat) {
+                System.out.println("The cat is your friend now. "
+                        + "Prrrrrrrrrrrrrrrrr!");
+            }
+            else {
+                System.out.println("\nMEOW! PSSST! GRRRR! The cat "
+                        + "scratches you with those sharp claws!");
+            }
+        }
+    }
+    
 }
