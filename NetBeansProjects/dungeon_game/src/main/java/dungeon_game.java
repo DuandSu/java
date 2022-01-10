@@ -335,15 +335,28 @@ public class dungeon_game {
                     }
                     else if (userInput.contains("chair")) {
                         if (fireStarted) {
-                            System.out.println("\nIt is so warm and toasty "
-                                    + "sitting in front of this fire. You kind "
-                                    + "of think maybe it is too hot, but "
-                                    + "regardless you fall asleep. Suddenly, you "
-                                    + "seem to be floating above the charred "
-                                    + "remains of your body. You realize you are "
-                                    + "a ghost and you are DEAD smart guy!");
-                            keepGoing = false;
-                            System.out.println("\nThanks for Playing. Have a good DEATH!");
+                            if (hasCat) {
+                                System.out.println("\nIt is so warm and toasty "
+                                        + "sitting in front of this fire. You kind "
+                                        + "of think maybe it is too hot, but "
+                                        + "regardless you fall asleep. Suddenly, "
+                                        + "you hear MEEEOOOOWWWWW! You wake to "
+                                        + "find that your clothes are smoking and "
+                                        + "you feel like you have a sunburn all "
+                                        + "over. You jump out of the chair. "
+                                        + catName + " has saved your life!");
+                            }
+                            else {
+                                System.out.println("\nIt is so warm and toasty "
+                                        + "sitting in front of this fire. You kind "
+                                        + "of think maybe it is too hot, but "
+                                        + "regardless you fall asleep. Suddenly, you "
+                                        + "seem to be floating above the charred "
+                                        + "remains of your body. You realize you are "
+                                        + "a ghost and you are DEAD smart guy!");
+                                keepGoing = false;
+                                System.out.println("\nThanks for Playing. Have a good DEATH!");
+                            }
                         }
                         else {
                             System.out.println("\nIt is really just too cold in "
