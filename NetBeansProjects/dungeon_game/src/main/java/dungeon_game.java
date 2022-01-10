@@ -36,6 +36,7 @@ public class dungeon_game {
             "You are in an empty room. There is nothing to do here. There is "
                 + "a door to the north and west."
         };
+        boolean cheatMode = false;
         boolean openedChest = false;
         boolean openedDesk = false;
         boolean hasKey = false;
@@ -44,6 +45,7 @@ public class dungeon_game {
         boolean fireStarted = false;
         boolean rm2LightsOn = false;
         boolean hasGarlic = false;
+        boolean ratGone = false;
         int room = 1;
         boolean keepGoing = true;
         while (keepGoing) {
@@ -57,6 +59,18 @@ public class dungeon_game {
             }
             else if (userInput.contains("help") || userInput.contains("?")) {
                 System.out.println("\n\nType in the word for the item you want to get, observe or go into. Type HELP to get this message.");
+            }
+            else if (userInput.contains("cheat")) {
+                cheatMode = !cheatMode;
+                if (cheatMode) {
+                    System.out.println("\nCheater! Cheater! You know you are "
+                            + "a Cheater. You are now invincible and will NOT die.");
+                }
+                else {
+                    System.out.println("\nFinally found some morals eh? You will"
+                            + " now be dead again if you die! See where your "
+                            + "morals got you?");                            
+                }
             }
             else if (userInput.contains("cry") || userInput.contains("scream") ||
                     userInput.contains("mad") || userInput.contains("shout")) {
@@ -128,6 +142,8 @@ public class dungeon_game {
                             + "Thinking it is a nice necklace you put it "
                             + "around your neck. That's why you have no "
                             + "girl friends Prince Charming!");
+                        roomDesc[0] = roomDesc[0].replace(
+                                " with a ring of garlic hanging on it", "");
                         hasGarlic = true;
                     }
                     else if (userInput.contains("picture") || userInput.contains("man")) {
@@ -140,6 +156,8 @@ public class dungeon_game {
                         System.out.println("\nYou hang up your coat. The coat "
                                 + "rack says Thanks Man! Puts it on and "
                                 + "disappears.");
+                        roomDesc[0] = roomDesc[0].replace(
+                                ", coat rack", "");                    
                     }
                     else if (userInput.contains("chest")) {
                         System.out.println("\nYou open the chest and discover "
@@ -155,7 +173,7 @@ public class dungeon_game {
                         }
                         else {
                             System.out.println("\nGood Idea! Maybe you should "
-                                    + "find one.")
+                                    + "find one.");
                         }
                     }
                     else if (userInput.contains("chair") || userInput.contains("sit")) {
@@ -166,14 +184,18 @@ public class dungeon_game {
                         System.out.println("\nThanks for Playing. Have a good DEATH!");                    }
                 }
                 else if (room == 2) {
-                    if (userInput.contains("south")) {
+                    if (userInput.contains("north")) {
+                        System.out.println("\nYou can't go that way. No door "
+                                + "silly!");
+                    }
+                    else if (userInput.contains("south")) {
                         if (hasKey) {
                             System.out.println("\nYou are going through the south door");
                             room = 1;
                         }
                         else {
                             System.out.println("\nDarn! The door seems to be "
-                                    + "locked!"
+                                    + "locked!");
                         }
                     }                    
                     else if (userInput.contains("east")) {
@@ -210,13 +232,28 @@ public class dungeon_game {
                         rm2LightsOn = !rm2LightsOn;
                     }
                     else if (userInput.contains("armoire") || userInput.contains("closet")) {
-                        System.out.println("\nYou open the armoire hoping for "
-                                + "some stylish clothes. Out jumps a pack rat. "
-                                + "He grabs your key and runs through the east "
-                                + "door. You have no key to get through the "
-                                + "doors now. Unless you want to perish slowly, "
-                                + "The key command you are looking for is DIE!");
-                        hasKey = false;
+                        if (ratGone) {
+                            System.out.println("\nYou open the armoire. The rat "
+                                    + "is still gone. So is your key!");
+                        }
+                        else {
+                            System.out.println("\nYou open the armoire hoping for "
+                                    + "some stylish clothes. Out jumps a pack rat. "
+                                    + "He grabs your key and runs through the east "
+                                    + "door. You have no key to get through the "
+                                    + "doors now. Unless you want to perish slowly, "
+                                    + "The key command you are looking for is DIE!");
+                        }
+                        if (cheatMode) {
+                            System.out.println("\nOK. You are running in cheat "
+                                + "mode. I guess nothing really happened!");
+                            ratGone = false;
+                            hasKey = true;
+                        }
+                        else {
+                            ratGone = true;
+                            hasKey = false;
+                        }
                     }
                     else if (userInput.contains("piano")) {
                         System.out.println("\nOK Elton! You rock an incredible "
@@ -271,6 +308,9 @@ public class dungeon_game {
                                     + "match and somehow get a roaring blaze "
                                     + "going. Try not to burn down the house "
                                     + "please!");
+                            roomDesc[1] = roomDesc[1].replace(
+                                "is out", "is blazing");                    
+
                             fireStarted = true;
                         }
                         else {
@@ -345,6 +385,15 @@ public class dungeon_game {
                 else {
                     System.out.println("\nSeems you are lost and don't know which room you are in. Go back to start!");
                     room = 1;
+                }
+            }
+            if (!keepGoing && 
+                    !(userInput.contains("exit") || userInput.contains("quit") || userInput.contains("die"))) {
+                if (cheatMode) {
+                    System.out.println("\nYou are running in Cheat mode. You hear the "
+                        + "angels calling you, when all of a sudden POOF, you are "
+                        + "back where you were before you died.");
+                    keepGoing = true;
                 }
             }
         }
