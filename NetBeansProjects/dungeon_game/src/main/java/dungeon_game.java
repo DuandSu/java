@@ -31,10 +31,10 @@ public class dungeon_game {
                 + "armoire, fire place, chairs in front, "
                 + "desk, piano and an electric guitar. The fire is out. There is "
                 + "a door to the east, west and south.",
-            "You are in an empty room. There is nothing to do here. There is "
-                + "a door to the west and south.",
-            "You are in an empty room. There is nothing to do here. There is "
-                + "a door to the north and west."
+            "You are in the dining room. There is table. It has a plate full of "
+                + "fish. There is a door to the west and south.",
+            "You are in a kitchen. You see a black cat in the southeast corner. "
+                + " There is a door to the north and west."
         };
         boolean cheatMode = false;
         boolean openedChest = false;
@@ -46,6 +46,9 @@ public class dungeon_game {
         boolean rm2LightsOn = false;
         boolean hasGarlic = false;
         boolean ratGone = false;
+        boolean hasFish = false;
+        boolean hasCat = false;
+        String catName = "Black Cat";
         int room = 1;
         boolean keepGoing = true;
         while (keepGoing) {
@@ -76,6 +79,17 @@ public class dungeon_game {
                     userInput.contains("mad") || userInput.contains("shout")) {
                 System.out.println("\n\nBy all means! If you think it will help, "
                         + "but I think it is a waste of time!");
+            }
+            else if (userInput.contains("cat") && room != 4) {
+                if (hasCat) {
+                    System.out.println("\nGood Idea. Give your cat a name. "
+                            + "What do you want to call your cat? ");
+                    catName = wordscan.nextLine().trim();
+                    System.out.println("\nYou just named your cat " + catName);
+                }
+                else {
+                    System.out.println("Huh! You must have the wrong room!");
+                }
             }
             else {
                 if (room == 1) {
@@ -339,14 +353,18 @@ public class dungeon_game {
                     }
                 }
                 else if (room == 3) {
-                    if (userInput.contains("west")) {
+                    if (userInput.contains("north") || userInput.contains("east")) {
+                        System.out.println("\nYou can't go that way. No door "
+                                + "silly!");
+                    }
+                    else if (userInput.contains("west")) {
                         if (hasKey) {
                             System.out.println("\nYou are going through the west door");
                             room = 2;
                         }
                         else {
                             System.out.println("\nDarn! The door seems to be "
-                                    + "locked!"
+                                    + "locked!");
                         }
                     }                    
                     else if (userInput.contains("south")) {
@@ -359,16 +377,26 @@ public class dungeon_game {
                                     + "locked!");
                         }
                     }
+                    else if (userInput.contains("fish")) {
+                        System.out.println("\nIt is a bit smelly, but you "
+                                + "pocket some of the fish. Even you are not "
+                                + "dumb enough to try eating it");
+                        hasFish = true;
+                    }
                 }
                 else if (room == 4) {
-                    if (userInput.contains("west")) {
+                    if (userInput.contains("east") || userInput.contains("south")) {
+                        System.out.println("\nYou can't go that way. No door "
+                                + "silly!");
+                    }
+                    else if (userInput.contains("west")) {
                         if (hasKey) {
                             System.out.println("\nYou are going through the west door");
                             room = 1;
                         }
                         else {
                             System.out.println("\nDarn! The door seems to be "
-                                    + "locked!"
+                                    + "locked!");
                         }
                     }                    
                     else if (userInput.contains("north")) {
@@ -379,6 +407,27 @@ public class dungeon_game {
                         else {
                             System.out.println("\nDarn! The door seems to be "
                                     + "locked!");
+                        }
+                    }
+                    else if (userInput.contains("cat") || userInput.contains("fish")) {
+                        if (hasFish && !hasCat) {
+                            System.out.println("\nThe cat jumps at the fish and "
+                                    + "eats if up whole. It licks its paws. "
+                                    + "Prrrrrrrrrrrr! I think you "
+                                    + "made a friend. The cat is following you "
+                                    + "now!");
+                            roomDesc[3] = roomDesc[3].replace(
+                                " You see a black cat in the southeast corner.", 
+                                "");
+                            hasCat = true;
+                        }
+                        else if (hasCat) {
+                            System.out.println("The cat is your friend now. "
+                                    + "Prrrrrrrrrrrrrrrrr!");
+                        }
+                        else {
+                            System.out.println("\nMEOW! PSSST! GRRRR! The cat "
+                                    + "scratches you with those sharp claws!");
                         }
                     }
                 }
